@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'PublicSans';
+  src: url('../assets/fonts/PublicSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* Brand / Accent Colors */
+  --color-brand-50:  #4B8B9F;
+  --color-brand-100: #437D8E;
+  --color-brand-200: #3E7383;
+  --color-brand-300: #3A6C7B;
+  --color-brand-400: #386776;
+  --color-brand-500: #34616F;
+  --color-brand-600: #49656E;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+  /* Neutral Colors */
+  --color-neutral-900: #020303;
+  --color-neutral-800: #1B2528;
+  --color-neutral-700: #15272D;
+  --color-danger: #C6381B;
+  --color-success: #087A2E;
+
+  /* Background / Foreground */
+  --color-background: #FCFDFD;
+  --color-foreground: var(--color-neutral-800);
+
+  /* Fonts */
+  --font-body: 'PublicSans', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+@layer base {
+  .container-box{
+    @apply max-w-[1440px] mx-auto px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)]
+  }
+
+}
+
+@layer components {
+  .container{
+    @apply max-w-[1440px] mx-auto px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)]
+  }
+
+}
+
+@layer utilities {
+
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MaterialThemeProjectNewConfig">
+    <option name="metadata">
+      <MTProjectMetadataState>
+        <option name="userId" value="75c551ac:19746445eb2:-7fff" />
+      </MTProjectMetadataState>
+    </option>
+  </component>
+  <component name="WebPackConfiguration">
+    <option name="mode" value="MANUAL" />
+    <option name="path" value="$PROJECT_DIR$/next.config.ts" />
+  </component>
+</project>
