@@ -12,7 +12,7 @@ import Profile3 from "@/assets/images/profile-3.png"
 import Profile4 from "@/assets/images/profile-4.png"
 import AvatarGroup from "@/components/ui/AvatarGroup";
 import {StatusBadge} from "@/components/ui/StatusBadge";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {DashboardSummary} from "@/types/types";
 import SummarySection from "@/components/tables/SummarySection";
 import Tabs from "@/components/navigation/Tabs";
@@ -57,7 +57,15 @@ const tableTabs: string[] = ['Overview', 'Transactions'];
 
 export default function Page() {
     const [activeTab, setActiveTab] = useState<string>('Overview')
+    const [loading, setLoading] = useState(true);
     const summaryCards = mapSummaryCards(dashboardSummary);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }, []);
+
 
     return (
         <>
@@ -99,7 +107,7 @@ export default function Page() {
                             {activeTab === "Overview" && (
                                 <>
                                     <SummarySection summaryCards={summaryCards}/>
-                                    <TransactionTable transactions={transactions}/>
+                                    <TransactionTable transactions={transactions} loading={loading}/>
                                 </>
                             )}
 
@@ -107,7 +115,7 @@ export default function Page() {
                                 <div className={`flex items-center justify-center py-3`}>
                                     <div className="space-y-[18px] w-full">
                                         <h2 className="text-[20px] leading-[24px] font-bold -tracking-[2%]">All Transactions</h2>
-                                        <TransactionTable transactions={transactions}/>
+                                        <TransactionTable transactions={transactions} loading={loading}/>
                                     </div>
                                 </div>
                             )}

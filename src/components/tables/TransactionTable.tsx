@@ -7,9 +7,11 @@ import TransactionCard from "@/components/cards/TransactionCard";
 import SortIcon from "@/components/ui/SortIcon";
 import SortDropdown from "@/components/filters/SortDropdown";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import TransactionTableSkeleton from "@/components/ui/TransactionTableSkeleton";
 
 interface Props {
     transactions: Transaction[];
+    loading: boolean;
 }
 
 const transactionHeads: { label: string; key: keyof Transaction }[] = [
@@ -28,7 +30,7 @@ const columnWidths = [
     "max-w-[74px] w-full min-w-[74px]", // Type
 ];
 
-const TransactionTable: FC<Props> = ({transactions}) => {
+const TransactionTable: FC<Props> = ({transactions, loading}) => {
     const {search} = useUIStore();
 
     const [sortKey, setSortKey] = useState<SortKey>("date");
@@ -90,15 +92,17 @@ const TransactionTable: FC<Props> = ({transactions}) => {
         });
     }, [filtered, sortKey, sortDirection]);
 
-    const isValidTransaction = (txn: any): txn is Transaction => {
+    const isValidTransaction = (txn: unknown): txn is Transaction => {
+        if (typeof txn !== "object" || txn === null) return false;
+        // Typecast txn as Record<string, unknown> for safe prop access
+        const obj = txn as Record<string, unknown>;
         return (
-            txn &&
-            typeof txn.id === "string" &&
-            typeof txn.amount === "number" &&
-            typeof txn.date === "string" &&
-            typeof txn.remark === "string" &&
-            typeof txn.currency === "string" &&
-            (txn.type === "Debit" || txn.type === "Credit")
+            typeof obj.id === "string" &&
+            typeof obj.amount === "number" &&
+            typeof obj.date === "string" &&
+            typeof obj.remark === "string" &&
+            typeof obj.currency === "string" &&
+            (obj.type === "Debit" || obj.type === "Credit")
         );
     };
 
@@ -122,6 +126,11 @@ const TransactionTable: FC<Props> = ({transactions}) => {
         );
     }
 
+    if (loading) {
+        return (
+            <TransactionTableSkeleton />
+        );
+    }
 
     return (
         <div className="w-full">
