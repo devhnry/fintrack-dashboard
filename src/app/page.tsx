@@ -1,3 +1,5 @@
+"use client"
+
 import Navbar from "@/components/Navbar";
 import Container from "@/components/Container";
 import Ellipsis from "@/assets/icons/ellipsis.svg"
@@ -10,15 +12,52 @@ import Profile3 from "@/assets/images/profile-3.png"
 import Profile4 from "@/assets/images/profile-4.png"
 import AvatarGroup from "@/components/AvatarGroup";
 import {StatusBadge} from "@/components/StatusBadge";
+import {useState} from "react";
+import {DashboardSummary} from "@/types/types";
+import SummarySection from "@/components/SummarySection";
+import Tabs from "@/components/Tabs";
+
+
+const summaryConfig = [
+    { key: "totalBalance", label: "Total Balance", changeKey: "balanceChange", isCurrency: true },
+    { key: "totalCredits", label: "Total Credits", changeKey: "creditsChange", isCurrency: true },
+    { key: "totalDebits", label: "Total Debits", changeKey: "debitsChange", isCurrency: true },
+    { key: "transactionCount", label: "Transactions", changeKey: "transactionChange", isCurrency: false },
+];
+
+export function mapSummaryCards(summary: DashboardSummary) {
+    return summaryConfig.map(({ key, label, changeKey, isCurrency }) => ({
+        key,
+        label,
+        value: summary[key as keyof DashboardSummary] as number,
+        change: summary[changeKey as keyof DashboardSummary] as number || 0,
+        isCurrency,
+    }));
+}
+
+const dashboardSummary: DashboardSummary = {
+    totalBalance: 12345,
+    totalCredits: 7890,
+    totalDebits: 4455,
+    transactionCount: 150,
+    balanceChange: 5,
+    creditsChange: 3,
+    debitsChange: -2,
+    transactionChange: 10,
+}
+
+const profiles: StaticImageData[] = [Profile1, Profile2, Profile3, Profile4];
+const participantNames = "Ava, Liam, Noah";
+const extraParticipants = "+12 others";
+const tableTabs: string[] = ['Overview', 'Transactions'];
 
 export default function Page() {
-    const profiles: StaticImageData[] = [Profile1, Profile2, Profile3, Profile4];
-    const participantNames = "Ava, Liam, Noah";
-    const extraParticipants = "+12 others";
+    const [activeTab, setActiveTab] = useState<string>('Overview')
+    const summaryCards = mapSummaryCards(dashboardSummary);
 
     return (
         <>
-            <main>
+            <main className={`overflow-hidden`}>
                 <Navbar />
                 <Container className="my-[28px]">
                     <section className="flex flex-col gap-[15px] sm:flex-row sm:justify-between items-start">
@@ -50,8 +89,15 @@ export default function Page() {
                     </section>
                 </Container>
                 <Container className="mb-[28px]">
-                    <section>
+                    <section className="space-y-[28px]">
+                        <Tabs tabs={tableTabs} activeTab={activeTab} onTabChange={setActiveTab} />
+                        {activeTab === "Overview" && (
+                            <SummarySection summaryCards={summaryCards} />
+                        )}
 
+                        {activeTab === "Transactions" && (
+                            <div className={`flex items-center justify-center text-heading`}>Page Unavailable</div>
+                        )}
                     </section>
                 </Container>
             </main>
