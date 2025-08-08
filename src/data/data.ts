@@ -1,5 +1,12 @@
 import {Transaction} from "@/types/types";
 
+export const summaryConfig = [
+    { key: "totalBalance", label: "Total Balance", changeKey: "balanceChange", isCurrency: true },
+    { key: "totalCredits", label: "Total Credits", changeKey: "creditsChange", isCurrency: true },
+    { key: "totalDebits", label: "Total Debits", changeKey: "debitsChange", isCurrency: true },
+    { key: "transactionCount", label: "Transactions", changeKey: "transactionChange", isCurrency: false },
+];
+
 export const transactions: Transaction[] = [
     {
         id: "1",

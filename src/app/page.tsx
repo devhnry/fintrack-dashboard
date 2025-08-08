@@ -19,25 +19,8 @@ import Tabs from "@/components/navigation/Tabs";
 import TransactionTable from "@/components/tables/TransactionTable";
 import {transactions} from "@/data/data";
 import Sidebar from "@/components/navigation/Sidebar";
+import {mapSummaryCards} from "@/util/util";
 
-
-const summaryConfig = [
-    { key: "totalBalance", label: "Total Balance", changeKey: "balanceChange", isCurrency: true },
-    { key: "totalCredits", label: "Total Credits", changeKey: "creditsChange", isCurrency: true },
-    { key: "totalDebits", label: "Total Debits", changeKey: "debitsChange", isCurrency: true },
-    { key: "transactionCount", label: "Transactions", changeKey: "transactionChange", isCurrency: false },
-];
-
-export function mapSummaryCards(summary: DashboardSummary) {
-    if (!summary) return [];
-    return summaryConfig.map(({ key, label, changeKey, isCurrency }) => ({
-        key,
-        label,
-        value: summary[key as keyof DashboardSummary] as number,
-        change: summary[changeKey as keyof DashboardSummary] as number || 0,
-        isCurrency,
-    }));
-}
 
 const dashboardSummary: DashboardSummary = {
     totalBalance: 12345,
