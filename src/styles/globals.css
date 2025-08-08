@@ -49,7 +49,11 @@ body {
 
 @layer components {
   .container{
-    @apply max-w-[1440px] mx-auto px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)]
+    @apply max-w-[1440px] mx-auto px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)];
+  }
+
+  .nav-spacing{
+    @apply flex items-center gap-[clamp(15px,calc(15px+13*((100vw-375px)/393)),28px)];
   }
 
 }
