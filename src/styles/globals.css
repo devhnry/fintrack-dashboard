@@ -11,6 +11,7 @@
 @theme {
   /* Brand / Accent Colors */
   --color-brand-50:  #4B8B9F;
+  --color-brand-50-light: rgba(75,139,159, 9%);
   --color-brand-100: #437D8E;
   --color-brand-200: #3E7383;
   --color-brand-300: #3A6C7B;
@@ -23,6 +24,7 @@
   --color-neutral-900: #020303;
   --color-neutral-800: #1B2528;
   --color-neutral-700: #15272D;
+  --color-neutral-700-light: rgba(21,39,45,62%) ;
   --color-danger: #C6381B;
   --color-success: #087A2E;
 
@@ -38,26 +40,39 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-body), sans-serif;
-}
-
-@layer base {
-  .container-box{
-    @apply max-w-[1440px] mx-auto px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)]
-  }
-
+  font-size: 15px;
+  line-height: 20px;
 }
 
 @layer components {
-  .container{
-    @apply max-w-[1440px] mx-auto px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)];
+  /* Typography */
+  .text-heading {
+    @apply font-bold leading-[40px] tracking-[-2%] flex items-center
+    text-[clamp(25px,calc(25px+9*((100vw-320px)/393)),34px)];
   }
 
-  .nav-spacing{
-    @apply flex items-center gap-[clamp(15px,calc(15px+13*((100vw-375px)/393)),28px)];
+  /* Layout */
+  .container-box {
+    @apply max-w-[1440px] mx-auto
+    px-[clamp(18px,calc(19px+30*((100vw-320px)/1120)),48px)];
   }
 
-}
+  .nav-spacing {
+    @apply flex items-center
+    gap-[clamp(15px,calc(15px+13*((100vw-375px)/393)),28px)];
+  }
 
-@layer utilities {
+  /* Buttons */
+  .primary-btn {
+    @apply text-neutral-900 bg-brand-50 rounded-2xl px-[18px] py-2 font-medium leading-[20px];
+  }
 
+  .btn-stats {
+    @apply leading-[20px] py-1 px-2 bg-brand-50-light rounded-2xl flex items-center gap-2;
+  }
+
+  /* Avatars */
+  .avatar {
+    @apply border-[1.5px] -ml-[6px] border-white rounded-full first:ml-0 last:border-0;
+  }
 }
