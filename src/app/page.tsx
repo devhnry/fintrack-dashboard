@@ -54,7 +54,7 @@ export default function Page() {
 
     return (
             <LayoutWrapper>
-                <div className={`overlay transition-all ease-in-out ${sidebarOpen ? "opacity-100" : "opacity-0"}
+                <div className={`overlay transition-all ease-in-out ${sidebarOpen ? "opacity-100" : "opacity-0 hidden"}
                 bg-foreground/30 absolute inset-0 top-[64px] z-40`}></div>
                 <Navbar/>
                 <Container className="my-[28px] mb-[76px] relative">
