@@ -16,6 +16,7 @@
   --color-brand-200: #3E7383;
   --color-brand-300: #3A6C7B;
   --color-brand-400: #386776;
+  --color-brand-400-light: rgba(56, 103, 118, 0.16);
   --color-brand-500: #34616F;
   --color-brand-500-light: rgba(52, 97, 111, 0.09);
   --color-brand-600: #49656E;
@@ -38,7 +39,8 @@
 
   --breakpoint-xsm: 400px;
   --breakpoint-xs: 460px;
-  --breakpoint-2xs: 600px;
+  --breakpoint-2xs: 520px;
+  --breakpoint-3xs: 600px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 900px;
@@ -74,6 +76,15 @@ body {
     text-[clamp(25px,calc(25px+9*((100vw-320px)/393)),34px)];
   }
 
+  .transaction-heads {
+    @apply font-medium text-[13px] leading-[16px] flex items-center;
+    color: var(--color-neutral-700-light);
+  }
+
+  .transaction-data {
+    @apply py-[18px] border-t-[1.5px] border-brand-600/20 w-full truncate;
+  }
+
   /* Layout */
   .container-box {
     @apply max-w-[1440px] mx-auto
@@ -92,6 +103,10 @@ body {
 
   .btn-stats {
     @apply leading-[20px] py-1 px-2 bg-brand-50-light rounded-2xl flex items-center gap-2;
+  }
+
+  .btn-sidebar{
+    @apply text-left py-2 px-[18px] rounded-2xl leading-[20px] text-[15px] transition-all duration-150 font-medium cursor-pointer;
   }
 
   /* Avatars */

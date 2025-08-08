@@ -1,6 +1,6 @@
 import React from "react";
 import Ellipsis from "@/assets/icons/ellipsis.svg"
-import {formatNumber} from "@/util";
+import {formatNumber} from "@/util/util";
 
 interface SummaryCardProps {
     label: string;
@@ -11,7 +11,7 @@ interface SummaryCardProps {
 
 export const SummaryCard: React.FC<SummaryCardProps> = ({ label, value, change, isCurrency }) => {
     return (
-        <div className="flex-shrink-0 max-w-[223px] sm:max-w-full w-full rounded-[20px] p-[28px] bg-brand-500-light max-h-[158px] h-full space-y-[18px] transition-all duration-500">
+        <div className="flex-shrink-0 max-w-[223px] sm:max-w-full w-full rounded-[20px] p-[28px] bg-brand-500-light max-h-[158px] h-full space-y-[18px] transition-all duration-500 sm:hover:scale-[102%] sm:hover:shadow-sm sm:hover:shadow-neutral-700-light/30">
             <div className="leading-[24px] text-[17px] -tracking-[0.5%] font-bold flex items-center justify-between">
                 <p>{label}</p>
                 <Ellipsis className={`cursor-pointer`} />

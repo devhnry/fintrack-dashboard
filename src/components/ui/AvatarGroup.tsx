@@ -7,7 +7,7 @@ const AvatarGroup = ({ profiles }: { profiles: StaticImageData[] }) => {
                 <Image
                     key={index}
                     style={{ zIndex: profiles.length - index }}
-                    className="avatar"
+                    className="avatar select-none"
                     src={profile.src}
                     width={32}
                     height={32}

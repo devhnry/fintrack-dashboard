@@ -1,4 +1,4 @@
-interface Transaction {
+export interface Transaction {
     id: string;
     date: string;
     remark: string;
@@ -17,3 +17,7 @@ export interface DashboardSummary {
     debitsChange: number;
     transactionChange: number;
 }
+
+export type SortKey = keyof Transaction;
+
+export type SortDirection = "asc" | "desc";
