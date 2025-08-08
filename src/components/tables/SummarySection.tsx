@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {SummaryCard} from "@/components/cards/SummaryCard";
-import {mapSummaryCards} from "@/app/page";
+import {mapSummaryCards} from "@/util/util";
 
 interface Props {
     summaryCards: ReturnType<typeof mapSummaryCards>
