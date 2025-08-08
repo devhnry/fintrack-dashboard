@@ -20,6 +20,8 @@ import TransactionTable from "@/components/tables/TransactionTable";
 import {transactions} from "@/data/data";
 import Sidebar from "@/components/navigation/Sidebar";
 import {mapSummaryCards} from "@/util/util";
+import {useUIStore} from "@/store/uiStore";
+import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
 
 const dashboardSummary: DashboardSummary = {
@@ -42,6 +44,7 @@ export default function Page() {
     const [activeTab, setActiveTab] = useState<string>('Overview')
     const [loading, setLoading] = useState(true);
     const summaryCards = mapSummaryCards(dashboardSummary);
+    const { sidebarOpen } = useUIStore();
 
     useEffect(() => {
         setTimeout(() => {
@@ -49,10 +52,10 @@ export default function Page() {
         }, 2000);
     }, []);
 
-
     return (
-        <>
-            <main>
+            <LayoutWrapper>
+                <div className={`overlay transition-all ease-in-out ${sidebarOpen ? "opacity-100" : "opacity-0"}
+                bg-foreground/30 absolute inset-0 top-[64px] z-40`}></div>
                 <Navbar/>
                 <Container className="my-[28px] mb-[76px] relative">
                     <Sidebar/>
@@ -105,8 +108,6 @@ export default function Page() {
                         </section>
                     </section>
                 </Container>
-            </main>
-
-        </>
+            </LayoutWrapper>
     )
 }

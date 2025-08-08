@@ -23,7 +23,7 @@ const TransactionTableSkeleton = () => {
                     {[...Array(skeletonRows)].map((_, idx) => (
                         <div
                             key={idx}
-                            className={`border border-gray-300 dark:border-gray-700 rounded p-4 ${skeletonPulse}`}
+                            className={`rounded p-4 ${skeletonPulse}`}
                             style={{ height: "80px" }}
                         />
                     ))}
